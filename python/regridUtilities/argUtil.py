@@ -2,6 +2,7 @@
 # to ensure they make sense. 
 
 import os
+from regridUtilities.logMod import logErr, logInfo, logMaster
 
 def checkArgs(parser):
     # Check to make sure input directory exists
@@ -42,6 +43,11 @@ def checkArgs(parser):
         if not parser.shpPath:
             print "ERROR: One must specify either a polygon shapefil or geoGrid file"
             raise
+    if parser.shpPath:
+        if parser.geoPath:
+            print "ERROR: One must choose either regridding to a geoGrid domain or \
+                  unstructured mesh"
+            raise
     if parser.geoPath:
         if len(parser.geoPath) == 0:
             print "ERROR: geoPath not specified"
@@ -50,3 +56,29 @@ def checkArgs(parser):
         if len(parser.shpPath) == 0:
             print "ERROR: shpPath not specified"
             raise
+        if not parser.shpUid:
+            print "ERROR: shpUid not specified"
+            raise
+        if len(parser.shpUid) == 0:
+            print "ERROR: shpUid not specified"
+            raise
+            
+def parseShpPath(shpPath,outPath):
+    # Utility function to decompose shapefile path, and return an output 
+    # NetCDF path to be used in pre-processing
+    logInfo('Parsing shapefile path for pre-processing.')
+    parse1 = shpPath.split('/')
+    shpFile = parse1[len(parse1)-1]
+    
+    parse2 = shpFile.split('.')
+    if len(parse2) != 2:
+        logErr('Unexpected shapefile path format')
+        raise
+    
+    segOut = ''
+    for i in range(0,len(parse1)-1):
+        segOut = segOut + parse1[i] + '/'
+      
+    outFile = parse2[0] + '_ESMF_UNSTRUC.nc'
+    outPath = segOut + outFile
+    

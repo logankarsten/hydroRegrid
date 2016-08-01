@@ -10,7 +10,6 @@ def initLog(pId,cDate,logDir):
     # Create log file path
     logPath = logDir + "/REGRID_JOB_RANK" + str(MPI_RANK) + "_PID" + \
               str(pId) + "_" + cDate + ".LOG"
-    print logPath
     logging.basicConfig(filename=logPath,level=logging.DEBUG)
         
     logging.info('Program initialized from rank: ' + str(MPI_RANK))
