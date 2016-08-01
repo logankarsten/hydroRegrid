@@ -11,9 +11,10 @@ def initLog(pId,cDate,logDir):
     # Create log file path
     logPath = logDir + "/REGRID_JOB_" + str(pId) + "_" + cDate + ".LOG"
     #if MPI_RANK == 0:
-    logging.basicConfig(filename=logPath,level=logging.DEBUG)
+    print logPath
+    #logging.basicConfig(filename=logPath,level=logging.DEBUG)
         
-    logging.info('Program initialized from rank: ' + str(MPI_RANK))
+    #logging.info('Program initialized from rank: ' + str(MPI_RANK))
 
 def logErr(msg):
     logging.error(msg + ": " + str(MPI_RANK))
