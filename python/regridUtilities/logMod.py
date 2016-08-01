@@ -12,7 +12,7 @@ def initLog(pId,cDate,logDir):
     logPath = logDir + "/REGRID_JOB_" + str(pId) + "_" + cDate + ".LOG"
     if MPI_RANK == 0:
         print logPath
-        #logging.basicConfig(filename=logPath,level=logging.DEBUG)
+        logging.basicConfig(filename=logPath,level=logging.DEBUG)
         
     #logging.info('Program initialized from rank: ' + str(MPI_RANK))
 
