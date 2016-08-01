@@ -7,6 +7,7 @@ MPI_COMM = MPI.COMM_WORLD
 MPI_RANK = MPI_COMM.Get_rank()
 
 def initLog(pId,cDate,logDir):
+    import logging
     # Create log file path
     logPath = logDir + "/REGRID_JOB_" + str(pId) + "_" + cDate + ".LOG"
     #if MPI_RANK == 0:
