@@ -14,7 +14,7 @@ def initLog(pId,cDate,logDir):
         print logPath
         logging.basicConfig(filename=logPath,level=logging.DEBUG)
         
-    #logging.info('Program initialized from rank: ' + str(MPI_RANK))
+    logging.info('Program initialized from rank: ' + str(MPI_RANK))
 
 def logErr(msg):
     logging.error(msg + ": " + str(MPI_RANK))
