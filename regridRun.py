@@ -14,9 +14,9 @@ sys.path.insert(0,pathTmp)
 import sys, os
 import argparse
 from regridUtilities.argUtil import checkArgs
-from regridUtilities.preProc import shpConvert
+from regridUtilities.argUtil import logging
+#from regridUtilities.preProc import shpConvert
 import datetime
-import logging
 
 def main(argv):
     # Parse arguments passed in.
@@ -56,10 +56,8 @@ def main(argv):
     pId = os.getpid()
     cDate = datetime.datetime.now()
     cDate = cDate.strftime('%Y_%m_%d_%H_%M_%S')
-    logPath = cwd + "/log/" + "REGRID_JOB_" + str(pId) + "_" + cDate + ".LOG"
-    logging.basicConfig(filename=logPath,level=logging.DEBUG)
-    logging.info('Initializing Regrid Program....')
-        
+    logDir = cwd + "/log"
+    logging(pId,cDate,logDir)        
     
 if __name__ == "__main__":
     main(sys.argv[1:])
