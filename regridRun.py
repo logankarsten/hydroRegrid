@@ -17,6 +17,7 @@ from regridUtilities.argUtil import checkArgs
 from regridUtilities.logMod import initLog
 #from regridUtilities.preProc import shpConvert
 import datetime
+import logging
 
 def main(argv):
     # Parse arguments passed in.
