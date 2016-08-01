@@ -14,7 +14,7 @@ sys.path.insert(0,pathTmp)
 import sys, os
 import argparse
 from regridUtilities.argUtil import checkArgs
-from regridUtilities.argUtil import logging
+from regridUtilities.loggin import initLog
 #from regridUtilities.preProc import shpConvert
 import datetime
 
@@ -57,7 +57,7 @@ def main(argv):
     cDate = datetime.datetime.now()
     cDate = cDate.strftime('%Y_%m_%d_%H_%M_%S')
     logDir = cwd + "/log"
-    logging(pId,cDate,logDir)        
+    initLog(pId,cDate,logDir)        
     
 if __name__ == "__main__":
     main(sys.argv[1:])
